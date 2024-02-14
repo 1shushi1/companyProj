@@ -72,8 +72,6 @@ public class Main {
 
         boss.getAllSubordinates().forEach(e -> System.out.println(e));
 
-
-
         List<Employee> employees = new ArrayList<>();
 
     }

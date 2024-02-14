@@ -10,6 +10,7 @@ public class Worker extends Employee{
         this.employmentDate = employmentDate;
         this.bonus = bonus;
     }
+
     public LocalDate getEmploymentDate(){
         return employmentDate;
     }

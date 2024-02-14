@@ -12,6 +12,7 @@ public class Manager extends Worker {
     private List<Employee> subordinates = new ArrayList<>(); // list of immediate subordinates
     private Set<Employee> allSubordinates = new HashSet<>(); // list of subordinates in all hierarchy
 
+
     public Manager(String name, String surname, LocalDate birthDate, BigDecimal salary, LocalDate employmentDate, BigDecimal bonus) {
         super(name, surname, birthDate, salary, employmentDate, bonus);
     }

@@ -51,4 +51,5 @@ public abstract class Person {
         hashCode = 13 * hashCode + lastName.hashCode();
         return 13 * hashCode + birthDate.hashCode();
     }
+
 }

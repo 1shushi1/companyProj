@@ -14,6 +14,7 @@ public final class PayrollEntry {
 //        } else {
 //            salaryPlusBonus = BigDecimal.ZERO;
 //        }
+
         if (salary == null){
             salary = BigDecimal.ZERO;
         }

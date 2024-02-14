@@ -11,6 +11,7 @@ public class Trainee extends Employee{
         this.amountOfPracticeDays = amountOfPracticeDays;
     }
     public LocalDate getPracticeStartDate(){
+
         return practiceStartDate;
     }
     public int getAmountOfPracticeDays(){
