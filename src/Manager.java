@@ -23,7 +23,7 @@ public class Manager extends Worker {
         if (employee instanceof Manager) {
             Manager manager = (Manager) employee;
             Set<Employee> employeeSet = manager.getAllSubordinates();
-            this.allSubordinates.addAll(employeeSet);
+            allSubordinates.addAll(employeeSet);
         }
     }
 

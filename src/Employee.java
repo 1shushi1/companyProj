@@ -16,6 +16,5 @@ public abstract class Employee extends Person{
     }
     public Manager getManager(){
         return manager;
-
     }
 }

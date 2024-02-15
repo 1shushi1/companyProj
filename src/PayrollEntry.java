@@ -3,7 +3,8 @@ import java.math.BigDecimal;
 public final class PayrollEntry {
     private final Employee employee;
     private final BigDecimal salaryPlusBonus;
-    public PayrollEntry(Employee employee, BigDecimal salary, BigDecimal bonus){
+
+    public PayrollEntry(Employee employee, BigDecimal salary, BigDecimal bonus) {
         this.employee = employee;
 //        if (salary != null && bonus != null){
 //            salaryPlusBonus = salary.add(bonus);
@@ -14,13 +15,21 @@ public final class PayrollEntry {
 //        } else {
 //            salaryPlusBonus = BigDecimal.ZERO;
 //        }
-
-        if (salary == null){
+        if (salary == null) {
             salary = BigDecimal.ZERO;
         }
-        if (bonus == null){
+        if (bonus == null) {
             bonus = BigDecimal.ZERO;
         }
         salaryPlusBonus = salary.add(bonus);
+    }
+
+    @Override
+    public String toString() {
+        return "Employee : " + employee + ". Salary plus bonus : " + salaryPlusBonus;
+    }
+
+    public BigDecimal getSalaryPlusBonus() {
+        return salaryPlusBonus;
     }
 }
