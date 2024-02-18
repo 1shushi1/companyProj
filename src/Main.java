@@ -3,6 +3,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
@@ -120,7 +121,60 @@ public class Main {
 
         //Сколько сотрудников, являющихся непосредственными подчиненными конкретного менеджера
         //зарабатывают более такой-то суммы?
-        Long amountOfEmployeesEarningMoreThanPartSum = HumanResourcesStatistic.amountOfEmpEarningMoreThanPartSum(workerManager, new BigDecimal(3000.00));
-        System.out.println(amountOfEmployeesEarningMoreThanPartSum);
+//        Long amountOfEmployeesEarningMoreThanPartSum = HumanResourcesStatistic.amountOfEmpEarningMoreThanPartSum(workerManager, new BigDecimal(3000.00));
+//        System.out.println(amountOfEmployeesEarningMoreThanPartSum);
+
+        //визначити кількість якихось конкретних співробітників з віком від та до
+//        long amountOfEmployeesWithParticularAge = HumanResourcesStatistic.amountOfEmployeesWithPartAge(boss.getAllSubordinates().stream().toList(), new String("Trainee"), 28, 35);
+//        System.out.println(amountOfEmployeesWithParticularAge);
+
+        //checker for age of trainee
+//        traineeManager.getSubordinates().forEach(e -> System.out.println(e + "  -  " + e.age()));
+
+        //old emp salary
+//        boss.getAllSubordinates().forEach(e -> System.out.println(e + " - " + e.getSalary()));
+//        System.out.println("+++++++++++++++++++");
+
+        //збільшити зарплптню на 10% для всіх співробітників, які заробляють в загальному менше  суми що передається
+//        List<Employee> employees = HumanResourcesStatistic.salaryIncrease(boss.getAllSubordinates().stream().toList(), new BigDecimal(2000.0));
+//        employees.forEach(e -> System.out.println(e));
+
+        //визначити кількість співробітників по кожній з посад
+//       HumanResourcesStatistic.amountOfEmployeesOnEachPosition(boss.getAllSubordinates().stream().toList()).entrySet()
+//       .forEach(e -> System.out.println("Position : " + e.getKey() + " - " + "Amount of workers : " + e.getValue()));
+
+        //підрахувати фонд зарплат по кожній посаді
+//
+//        HumanResourcesStatistic.sumOfMoneyEachManagerShouldPayToEmp(boss.getAllSubordinates().stream().toList()).entrySet()
+//        .forEach(e -> System.out.println("Position : " + e.getKey() + " - " + "Money to pay : " + e.getValue().getSum()));
+
+        ////вивести всіх спывробытників для кожної посади
+//        Map<String, List<Employee>> positionEmployeeList = HumanResourcesStatistic.positionEmployeeList(boss.getAllSubordinates().stream().toList());
+//        for (Map.Entry<String, List<Employee>> entry : positionEmployeeList.entrySet()){
+//            String position = entry.getKey();
+//            System.out.println(position);
+//            List<Employee> employeesList = entry.getValue();
+//            for (Employee emp : employeesList){
+//                System.out.println("List of workers : " + emp);
+//            }
+//        }
+
+        //знайти посаду  в якій найбільше співробытників
+//        String position = HumanResourcesStatistic.positionWithTheMostEmp(boss.getAllSubordinates().stream().toList());
+//        System.out.println(position);
+
+        //знайти кількість співробітників що немають бонусів на даний момент
+//        long empWhoDoesntHaveBonuses = HumanResourcesStatistic.amountOfEmpWhoDoesntHaveBonuses(boss.getAllSubordinates().stream().toList());
+//        System.out.println(empWhoDoesntHaveBonuses);
+
+        //знайти прізвища співробітників, які отримають прибуток в такому-то діапвзоні і видати іх у порядку зменшення довжин цих прізвищ
+//        List<Employee> empWhichGetsSalInPartRangeBySurnameLengthDESC =
+//                HumanResourcesStatistic.empWhichGetsSalInPartRangeBySurnameLengthDESC(boss.getAllSubordinates().stream().toList(), new BigDecimal(1500), new BigDecimal(3000));
+//        empWhichGetsSalInPartRangeBySurnameLengthDESC.forEach(e -> System.out.println(e));
+
+        //приймає масив стрінгів та повертаєто суму цифр в ньому
+        String[] arr = {"hello1", "world6", "java9", "programming10", "openAI20", "languageModel4", "artificialIntelligence7", "dataScience24", "machineLearning9", "deepLearning23"};
+        long sumOfTheNum = HumanResourcesStatistic.sumOfTheNum(arr);
+        System.out.println(sumOfTheNum);
     }
 }

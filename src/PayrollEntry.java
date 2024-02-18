@@ -32,4 +32,7 @@ public final class PayrollEntry {
     public BigDecimal getSalaryPlusBonus() {
         return salaryPlusBonus;
     }
+    public Employee getEmployee(){
+        return employee;
+    }
 }
