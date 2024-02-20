@@ -1,9 +1,15 @@
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.math.BigDecimal;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.function.IntFunction;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public final class HumanResourcesStatistic {
     //подготовка заработной платы для всех работников
@@ -71,37 +77,57 @@ public final class HumanResourcesStatistic {
     }
 
     //підрахувати фонд зарплат по кожній посаді
-    public static Map<String, DoubleSummaryStatistics> sumOfMoneyEachManagerShouldPayToEmp(List<Employee> employees){
+    public static Map<String, DoubleSummaryStatistics> sumOfMoneyEachManagerShouldPayToEmp(List<Employee> employees) {
         return payroll(employees).stream().collect(Collectors.groupingBy(e -> e.getEmployee().getClass().getSimpleName(), Collectors.summarizingDouble(e -> e.getSalaryPlusBonus().doubleValue())));
     }
+
     //вивести всых спывробытникыв для кожноъ посади
-    public static Map<String, List<Employee>> positionEmployeeList (List<Employee> employees){
+    public static Map<String, List<Employee>> positionEmployeeList(List<Employee> employees) {
         return employees.stream().distinct().collect(Collectors.groupingBy(e -> e.getClass().getSimpleName()));
     }
+
     //знайти посаду в якій найбільше співробітників
-    public static String positionWithTheMostEmp(List<Employee> employees){
+    public static String positionWithTheMostEmp(List<Employee> employees) {
         return positionEmployeeList(employees).entrySet().stream().max((a, b) -> a.getValue().size() - b.getValue().size()).get().getKey();
     }
 
     //знайти кількість співробітників що немають бонусів на даний момент
-    public static long amountOfEmpWhoDoesntHaveBonuses (List<Employee> employees){
+    public static long amountOfEmpWhoDoesntHaveBonuses(List<Employee> employees) {
         return employees.stream().distinct().filter(e -> !(e instanceof Worker) || ((Worker) e).getBonus() == null).count();
     }
 
     //значти прізвища співробітників, які отримають прибуток в такому-то діапвзоні і видати іх у порядку зменшення довжин цих прізаищ
-    public static List<Employee> empWhichGetsSalInPartRangeBySurnameLengthDESC(List<Employee> employees, BigDecimal salaryFrom, BigDecimal salaryTo){
+    public static List<Employee> empWhichGetsSalInPartRangeBySurnameLengthDESC(List<Employee> employees, BigDecimal salaryFrom, BigDecimal salaryTo) {
         return payroll(employees).stream().filter(e -> e.getSalaryPlusBonus().compareTo(salaryFrom) >= 1 && e.getSalaryPlusBonus().compareTo(salaryTo) <= 1)
                 .sorted((a, b) -> -(a.getEmployee().getLastName().length() - b.getEmployee().getLastName().length())).map(e -> e.getEmployee()).toList();
     }
 
     //приймає масив стрінгів та повертаєто суму цифр в ньому
-    public static long sumOfTheNum (String [] arr){
-        return Arrays.stream(arr)
-                .mapToLong(str -> str.chars()
-                        .filter(Character::isDigit)
-                        .mapToObj(Character::getNumericValue)
-                        .mapToInt(Integer::intValue)
-                        .sum())
-                .sum();
+    public static long sumOfTheNum(String[] arr) {
+        return Arrays.stream(arr).reduce((s1, s2) -> s1 + s2).get().chars().filter(e -> Character.isDigit(e)).map(e -> e - 48).reduce((s1, s2) -> s1 + s2).getAsInt();
+    }
+
+    //є файл текстовий. Визначити скільки в нього слів (роздільником є пробіл ) з розміром більше такого-то
+    public static long method(String wordToCompare, String path) throws IOException {
+        return Files.lines(Path.of(path)).flatMap(e -> Arrays.stream(e.split(" "))).filter(e -> e.length() > wordToCompare.length()).count();
+
+    }
+
+    //ф-я  скачує текстовий файл та повертає кільеість приголосних в ньому
+    public static long amountOfConsonants(String path) throws IOException{
+        return Files.readString(Path.of(path) ).chars().mapToObj(c -> (char) c).filter(c -> Character.isLetter(c) &&
+                !(c.equals('a') || c.equals('e') || c.equals('i') || c.equals('u') || c.equals('o') || c.equals('A') || c.equals('E') || c.equals('I') || c.equals('U') || c.equals('O'))).count();
+    }
+    //приймаємо лист інтів та повертаємо суму цифр з них
+    public static int sumOfTheNumbers (List<Integer> integers){
+        return integers.stream().map(e -> e + "").reduce((s1, s2) -> s1 + s2).get().chars().map(e -> e -48).reduce((c1, c2) -> c1 + c2).getAsInt();
+    }
+    //приймаємо лист стрінгів та визначаємо кількість кожного зі стрінгів
+    public static Map<String, Long> stringLongMap (List<String> strings){
+        return strings.stream().collect(Collectors.groupingBy(e -> e, Collectors.counting()));
+    }
+    //отримаємо масив інтів та повертаємо лист відсортований за спаданням без дублікатів та парних чисел
+    public static List<Integer> sortedIntegers (int [] integers){
+        return Arrays.stream(integers).boxed().distinct().filter(e -> e % 2 != 0 && e != 0).sorted((i1, i2) -> i2.compareTo(i1)).toList();
     }
 }

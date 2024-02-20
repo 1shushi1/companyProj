@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -6,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         //Managers
         Manager boss = new Manager("John", "Doe", LocalDate.of(1980, 5, 15), new BigDecimal("7000"), LocalDate.of(2010, 1, 1), new BigDecimal("1000"));
         Manager deputy = new Manager("Jane", "Smith", LocalDate.of(1975, 10, 20), new BigDecimal("6000"), LocalDate.of(2005, 6, 15), new BigDecimal("1200"));
@@ -173,8 +174,34 @@ public class Main {
 //        empWhichGetsSalInPartRangeBySurnameLengthDESC.forEach(e -> System.out.println(e));
 
         //приймає масив стрінгів та повертаєто суму цифр в ньому
-        String[] arr = {"hello1", "world6", "java9", "programming10", "openAI20", "languageModel4", "artificialIntelligence7", "dataScience24", "machineLearning9", "deepLearning23"};
-        long sumOfTheNum = HumanResourcesStatistic.sumOfTheNum(arr);
-        System.out.println(sumOfTheNum);
+//        String[] arr = {"hello1", "world6", "java9", "programming10", "openAI20", "languageModel4", "artificialIntelligence7", "dataScience24", "machineLearning9", "deepLearning23"};
+//        long sumOfTheNum = HumanResourcesStatistic.sumOfTheNum(arr);
+//        System.out.println(sumOfTheNum);
+
+        //є файл текстовий. Визначити скільки в нього слів (роздільником є пробіл ) з розміром більше такого-то
+//        long amountOfWords = HumanResourcesStatistic.method("1234567", "C:\\Users\\bemro\\IdeaProjects\\companyProj\\src\\text");
+//        System.out.println(amountOfWords);
+
+        //ф-я  скачує текстовий файл та повертає кільеість приголосних в ньому
+//        long amountOfConsonants = HumanResourcesStatistic.amountOfConsonants("C:\\Users\\bemro\\IdeaProjects\\companyProj\\src\\text");
+//        System.out.println(amountOfConsonants);
+
+        //приймаємо лист інтів та повертаємо суму цифр з них
+//        List<Integer> integers = new ArrayList<>();
+//        Collections.addAll(integers, 144, 22, 3, 4333, 555, 61, 77, 81, 9, 10);
+//        long sum = HumanResourcesStatistic.sumOfTheNumbers(integers);
+//        System.out.println(sum);
+
+        //приймаємо лист стрінгів та визначаємо кількість кожного зі стрінгів
+//        List<String> names = new ArrayList<>();
+//        Collections.addAll(names,
+//                "John", "Alice", "Bob", "Mary", "David", "Emily", "Michael", "Sara", "Chris",
+//                "Alice", "Bob", "David", "Michael", "Sara",
+//                "John", "Alice", "Bob", "Mary", "David", "Emily", "Michael", "Sara", "Chris",
+//                "Alice", "Bob", "Mary", "David", "Emily", "Michael", "Sara");
+//        HumanResourcesStatistic.stringLongMap(names).forEach((s, l) -> System.out.println("Names : " + s + " - Amount : " + l));
+
+        //отримаємо масив інтів та повертаємо лист відсортований за спаданням без дублікатів та парних чисел
+        HumanResourcesStatistic.sortedIntegers(new int[]{2, 5, 25, 3, 4, 10, 11, 13, 14, 44, 65, 77, 88, 21, 23, 23, 9, 0, 1, 81}).forEach(e -> System.out.println(e));
     }
 }
