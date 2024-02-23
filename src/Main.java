@@ -1,10 +1,7 @@
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -202,6 +199,25 @@ public class Main {
 //        HumanResourcesStatistic.stringLongMap(names).forEach((s, l) -> System.out.println("Names : " + s + " - Amount : " + l));
 
         //отримаємо масив інтів та повертаємо лист відсортований за спаданням без дублікатів та парних чисел
-        HumanResourcesStatistic.sortedIntegers(new int[]{2, 5, 25, 3, 4, 10, 11, 13, 14, 44, 65, 77, 88, 21, 23, 23, 9, 0, 1, 81}).forEach(e -> System.out.println(e));
+//        HumanResourcesStatistic.sortedIntegers(new int[]{2, 5, 25, 3, 4, 10, 11, 13, 14, 44, 65, 77, 88, 21, 23, 23, 9, 0, 1, 81}).forEach(e -> System.out.println(e));
+
+        //приймаємо 2д масив типу інт та повертаємо номер горизонтального масиву з найбільшою сумою елементів
+//        int index = HumanResourcesStatistic.foundTheHighestSumRow(new int[][]{{3,4,8, 11}, {23, 4, 9, 1}, {8, 9, 0}});
+//        System.out.println(index);
+
+        ////приймаємо 2д масив інтів та повертаємо для кожного рядка середнє чисел в ньому
+//        HumanResourcesStatistic.avgOfEachRow(new int[][]{{3,4,8, 11}, {23, 4, 9, 1}, {8, 9, 0}}).forEach((i, a) -> System.out.println(Arrays.toString(i) + " - " + "Avg num : " + a));
+
+        ////приймаємо лист лонгів та повертаємо кількість цифр в всіх лонгах
+        List<Long> longs = new ArrayList<>();
+        Collections.addAll(longs, 10216l, 38669l);
+//        long amount = HumanResourcesStatistic.amountOfNumbersInLongVal(longs);
+//        System.out.println(amount);
+
+        //кількість кожної з цифр в листі лонгів
+//        HumanResourcesStatistic.amountOfTimeEachNumberRepeats(longs).forEach((l1, l2) -> System.out.println(l1 + " - " + l2));
+
+        //для кожного лонга знайти максимальну цифру в ньому
+        HumanResourcesStatistic.maxValInEachLong(longs).forEach((a,b) -> System.out.println("Long value : " + a + " - " +  "Max number in this long val : " + b));
     }
 }

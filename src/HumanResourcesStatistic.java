@@ -114,20 +114,56 @@ public final class HumanResourcesStatistic {
     }
 
     //ф-я  скачує текстовий файл та повертає кільеість приголосних в ньому
-    public static long amountOfConsonants(String path) throws IOException{
-        return Files.readString(Path.of(path) ).chars().mapToObj(c -> (char) c).filter(c -> Character.isLetter(c) &&
+    public static long amountOfConsonants(String path) throws IOException {
+        return Files.readString(Path.of(path)).chars().mapToObj(c -> (char) c).filter(c -> Character.isLetter(c) &&
                 !(c.equals('a') || c.equals('e') || c.equals('i') || c.equals('u') || c.equals('o') || c.equals('A') || c.equals('E') || c.equals('I') || c.equals('U') || c.equals('O'))).count();
     }
+
     //приймаємо лист інтів та повертаємо суму цифр з них
-    public static int sumOfTheNumbers (List<Integer> integers){
-        return integers.stream().map(e -> e + "").reduce((s1, s2) -> s1 + s2).get().chars().map(e -> e -48).reduce((c1, c2) -> c1 + c2).getAsInt();
+    public static int sumOfTheNumbers(List<Integer> integers) {
+        return integers.stream().map(e -> e + "").reduce((s1, s2) -> s1 + s2).get().chars().map(e -> e - 48).reduce((c1, c2) -> c1 + c2).getAsInt();
     }
+
     //приймаємо лист стрінгів та визначаємо кількість кожного зі стрінгів
-    public static Map<String, Long> stringLongMap (List<String> strings){
+    public static Map<String, Long> stringLongMap(List<String> strings) {
         return strings.stream().collect(Collectors.groupingBy(e -> e, Collectors.counting()));
     }
+
     //отримаємо масив інтів та повертаємо лист відсортований за спаданням без дублікатів та парних чисел
-    public static List<Integer> sortedIntegers (int [] integers){
-        return Arrays.stream(integers).boxed().distinct().filter(e -> e % 2 != 0 && e != 0).sorted((i1, i2) -> i2.compareTo(i1)).toList();
+    public static List<Integer> sortedIntegers(int[] integers) {
+        return Arrays.stream(integers).boxed().distinct().filter(e -> e % 2 != 0).sorted((i1, i2) -> i2.compareTo(i1)).toList();
+    }
+
+    //приймаємо 2д масив типу інт та повертаємо номер горизонтального масиву з найбільшою сумою елементів
+    public static int foundTheHighestSumRow(int[][] arr2D) {
+        int[] arr = new int[]{-1, 0, Integer.MIN_VALUE};
+        Arrays.stream(arr2D).map(e -> Arrays.stream(e).sum()).forEach(e -> {
+            arr[0]++;
+            if (arr[2] < e) {
+                arr[2] = e;
+                arr[1] = arr[0];
+            }
+        });
+        return arr[1];
+    }
+    //приймаємо 2д масив інтів та повертаємо для кожного рядка середнє чисел в ньому
+    public static Map<int[], Double> avgOfEachRow(int [][] arr2D) {
+        return Arrays.stream(arr2D).collect(Collectors.groupingBy(e -> e, Collectors.averagingDouble(e -> Arrays.stream(e).average().getAsDouble())));
+    }
+    //приймаємо лист лонгів та повертаємо кількість цифр в всіх лонгах
+    public static long amountOfNumbersInLongVal(List<Long> longs){
+        return longs.stream().map(e -> e + "").reduce((s1, s2) -> s1 + s2).get().chars().toArray().length;
+    }
+    //кількість кожної з цифр в листі лонгів
+    public static Map<Integer, Long> amountOfTimeEachNumberRepeats(List<Long> longs){
+        return longs.stream().map(e -> e + "").reduce((s1, s2) -> s1 + s2).get().chars().map(e -> e - 48).boxed().collect(Collectors.groupingBy(e -> e, Collectors.counting()));
+    }
+    //для кожного лонга знайти максимальну цифру в ньому
+    public static Map<Long, Integer> maxValInEachLong(List<Long> longs){
+        Map<Long, Integer> map = new HashMap<>();
+        longs.stream().forEach(e -> {
+            map.put(e, (e + "").chars().max().getAsInt() - 48);
+        });
+        return map;
     }
 }
