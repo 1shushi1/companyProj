@@ -218,6 +218,11 @@ public class Main {
 //        HumanResourcesStatistic.amountOfTimeEachNumberRepeats(longs).forEach((l1, l2) -> System.out.println(l1 + " - " + l2));
 
         //для кожного лонга знайти максимальну цифру в ньому
-        HumanResourcesStatistic.maxValInEachLong(longs).forEach((a,b) -> System.out.println("Long value : " + a + " - " +  "Max number in this long val : " + b));
+//        HumanResourcesStatistic.maxValInEachLong(longs).forEach((a,b) -> System.out.println("Long value : " + a + " - " +  "Max number in this long val : " + b));
+
+        //отримаэмо лист стрынгів та повертаємо лист стрінгів які не мають цифр
+        List<String> strings = new ArrayList<>();
+        Collections.addAll(strings, "hello1", "world6", "java9", "programming10", "openAI20", "languageModel4", "artificialIntelligence7", "dataScience24", "machineLearning9", "deepLearning23");
+        HumanResourcesStatistic.stringsWithoutNumber(strings);
     }
 }
