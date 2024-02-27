@@ -222,7 +222,7 @@ public class Main {
 
         //отримаэмо лист стрынгів та повертаємо лист стрінгів які не мають цифр
         List<String> strings = new ArrayList<>();
-        Collections.addAll(strings, "hello1", "world6", "java9", "programming10", "openAI20", "languageModel4", "artificialIntelligence7", "dataScience24", "machineLearning9", "deepLearning23");
-        HumanResourcesStatistic.stringsWithoutNumber(strings);
+        Collections.addAll(strings, "hello1", "world", "java9", "programming", "openAI20", "languageModel", "artificialIntelligence7", "dataScience24", "machineLearning", "deepLearning23");
+        HumanResourcesStatistic.stringsWithoutNumber(strings).forEach(e -> System.out.println(e));
     }
 }

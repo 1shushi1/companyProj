@@ -168,6 +168,6 @@ public final class HumanResourcesStatistic {
     }
     //отримаэмо лист стрынгів та повертаємо лист стрінгів які не мають цифр
     public static List<String> stringsWithoutNumber(List<String> strings){
-        return strings.stream().map(e -> e.chars().mapToObj(c -> (char)c)).filter(e -> Arrays.asList(0,1,2,3,4,5,6,7,8,9).contains(e)).collect(Collectors.joining())
+        return strings.stream().filter(e -> e.chars().noneMatch(c -> Character.isDigit(c))).toList();
     }
 }
